@@ -1,5 +1,5 @@
 <Alloy>
-  <Window title="Tab B window">
+  <View>
     <Label>You are in Tab B</Label>
-  </Window>
+  </View>
 </Alloy>
