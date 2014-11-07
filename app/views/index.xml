@@ -1,5 +1,10 @@
 <Alloy>
-	<Window class="container">
-		<Label id="label" onClick="doClick">Hello, World</Label>
-	</Window>
+  <TabGroup>
+    <Tab title="Tab A" icon="KS_nav_phone.png">
+      <Require src="tab_a"></Require>
+    </Tab>
+    <Tab title="Tab B" icon="KS_nav_platform.png">
+      <Require src="tab_b"></Require>
+    </Tab>
+  </TabGroup>
 </Alloy>

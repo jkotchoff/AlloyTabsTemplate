@@ -1,0 +1,13 @@
+"Window": {
+  tabBarHidden: true,
+  backgroundColor:"white"
+}
+
+"Label": {
+  width: Ti.UI.SIZE,
+  height: Ti.UI.SIZE,
+  color: "#000",
+  font: {
+    fontSize: '14dp'
+  }
+}

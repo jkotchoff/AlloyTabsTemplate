@@ -1,5 +1,2 @@
-function doClick(e) {
-    alert($.label.text);
-}
-
-$.index.open();
+Alloy.Globals.tabGroup = $.getView();
+Alloy.Globals.tabGroup.open();

@@ -1,0 +1,5 @@
+<Alloy>
+  <Window>
+    <Label>You are in the sub window</Label>
+  </Window>
+</Alloy>

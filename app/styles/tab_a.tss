@@ -1,0 +1,12 @@
+"Window": {
+  backgroundColor:"white"
+}
+
+"Label": {
+  width: Ti.UI.SIZE,
+  height: Ti.UI.SIZE,
+  color: "#0000cc",
+  font: {
+    fontSize: '14dp'
+  }
+}
