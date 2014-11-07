@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- https://wiki.appcelerator.org/display/guides2/Android+Themes -->
+  <style name="AlloyTabsTemplateTheme" parent="Theme.AppCompat">
+    <item name="android:actionBarStyle">@style/AlloyTabsTemplateActionBar</item>
+  </style>
+  
+  <style name="AlloyTabsTemplateActionBar" parent="android:style/Widget.Holo.Light.ActionBar">
+    <item name="android:background">#22486a</item>
+  </style>
+</resources>
