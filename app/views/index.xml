@@ -1,13 +1,21 @@
 <Alloy>
   <TabGroup module="tabs">
-    <Tab module="tabs" id="tab_a" title="Tab A iOS" icon="KS_nav_phone.png" activeIcon="KS_nav_phone_active.png">
-      <Window module="tabs" id="tab_a_window" title="Tab A Android">
+    <ActionBar platform="android"></ActionBar>
+    <Menu platform="android"></Menu>
+    <Tab module="tabs" id="tab_a" title="Tab A" icon="KS_nav_phone.png" activeIcon="KS_nav_phone_active.png">
+      <Window module="tabs" id="tab_a_window" title="Tab A window">
+        <RightNavButton platform="ios">
+          <Button onClick="firstTabNavButtonHandler" class="button_a"></Button>
+        </RightNavButton>
         <Require type="view" id="tab_a_view" src="tab_a_view"></Require>
       </Window>
     </Tab>
     <Tab module="tabs" id="tab_b" title="Tab B" icon="KS_nav_platform.png" activeIcon="KS_nav_platform_active.png">
-      <Window module="tabs" id="tab_b_window" title="Tab B Android">
-        <Require type="view" id="tab_b_view" src="tab_b_view"></Require>
+      <Window module="tabs" id="tab_b_window" title="Tab B window">
+        <RightNavButton platform="ios">
+          <Button onClick="secondTabNavButtonHandler" class="button_b"></Button>
+        </RightNavButton>
+        <Require type="view" id="tab_b_view" src="tab_b_view" class="button_b"></Require>
       </Window>
     </Tab>
   </TabGroup>

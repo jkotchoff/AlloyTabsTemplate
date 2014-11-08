@@ -2,3 +2,10 @@
   backgroundColor:"white"
 }
 
+".button_a[platform=ios]": {
+  systemButton: Ti.UI.iPhone.SystemButton.ADD
+}
+
+".button_b[platform=ios]": {
+  systemButton: Ti.UI.iPhone.SystemButton.COMPOSE
+}

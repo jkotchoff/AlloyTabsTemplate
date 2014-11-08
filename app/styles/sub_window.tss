@@ -4,10 +4,14 @@
 }
 
 "Label": {
-  width: Ti.UI.SIZE,
+  width: '80%',
   height: Ti.UI.SIZE,
   color: "#000",
   font: {
     fontSize: '14dp'
   }
+}
+
+"View": {
+  layout: 'vertical'
 }

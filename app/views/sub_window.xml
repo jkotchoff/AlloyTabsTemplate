@@ -1,5 +1,9 @@
 <Alloy>
   <Window>
-    <Label>You are in the sub window</Label>
+    <ActionBar platform="android" displayHomeAsUp="true" onHomeIconItemSelected="closeWin"></ActionBar>
+    <View>
+      <Label>You are in the sub window.</Label>
+      <Label platform="android">You can tap the action bar icon to navigate back to the tab group</Label>
+    </View>
   </Window>
 </Alloy>

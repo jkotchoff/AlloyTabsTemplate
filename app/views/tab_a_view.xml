@@ -1,5 +1,6 @@
 <Alloy>
   <View>
-    <Label id="open_label">You are in Tab A. Tap me to open a child window</Label>
+    <Label id="open_label">You are in Tab A. 
+Tap me to open a child window</Label>
   </View>
 </Alloy>

@@ -31,7 +31,7 @@ exports.createTabGroup = function(args) {
   tabGroup.open = function() {
     Alloy.Globals.baseWin = win;
     win.addEventListener("open", function(){
-      Ti.App.fireEvent('stocklight::tabgroup_opened');
+      Ti.App.fireEvent('AlloyTabsTemplate::tabgroup_opened');
     });
     win.open();
   };
