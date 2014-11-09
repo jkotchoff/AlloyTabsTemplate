@@ -1,21 +1,27 @@
 ".caffeinaToastView":{
 	top: 0,
-	backgroundColor: '#A000',
-	height: 65,
+/*
+  backgroundColor: '#A000',
+*/
+  backgroundColor: '#d83d3d',
+	height: '65dp',
 	touchEnabled: false
 },
 ".caffeinaToastIcon":{
-	left: 8,
-	height: 42
+	left: '8dp',
+	height: '42dp'
+},
+".caffeinaToastIcon[platform=android]":{
+  width: '42dp'
 },
 ".caffeinaToastLabel":{
 	touchEnabled: false,
-	left: 60,
-	right: 10,
-	height: 60,
+	left: '60dp',
+	right: '10dp',
+	height: '60dp',
 	color: '#fff',
 	textAlign: 'left',
 	font: {
-		fontSize: 14
+		fontSize: '14dp'
 	}
 }

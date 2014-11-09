@@ -1,0 +1,28 @@
+"Label": {
+  touchEnabled: false,
+  font: {
+    fontFamily: Alloy.Globals.fontFamily,
+    fontSize: "14dp"
+  }
+},
+".gray": {
+  color: "#666666"
+},
+"#loading": {
+  width: "100%",
+  height: "100%",
+  backgroundColor: "white",
+  zIndex: 3,
+  left: 0,
+  top: 0
+},
+".loadingicon": {
+  width: "100dp",
+  height: "100dp",
+  top: "86dp",
+  borderRadius: "7dp",
+  image: "/appicon.png"
+},
+"#loadinglbl": {
+  top: "215dp"
+}

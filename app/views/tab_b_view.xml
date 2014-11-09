@@ -1,5 +1,6 @@
 <Alloy>
-  <View>
-    <Label>You are in Tab B</Label>
+  <View id="container" module="container">
+    <Label id="warning_label">You are in Tab B
+Tap me to toggle a warning view</Label>
   </View>
 </Alloy>

@@ -16,7 +16,6 @@ function close() {
 		top: -1 * $container.height,
 		duration: args.animationDuration
 	}, function() {
-
 		if (_.isFunction($container.close)) $container.close();
 		if (args.view != null) args.view.remove($container);
 
@@ -43,7 +42,7 @@ if (args.view == null) {
 }
 
 $container.addEventListener('touchstart', function(e){
-	close();
+	//close();
 	if (_.isFunction(args.click)) args.click(e);
 });
 
@@ -62,7 +61,7 @@ if (OS_IOS && args.usePhysicsEngine === true && Ti.UI.iOS.createAnimator != null
 	animator.addBehavior(dy);
 	animator.addBehavior(pusher);
 
-	$container.applyProperties({ height: 150, top: -86 });
+	$container.applyProperties({ height: '150dp', top: '-86dp' });
 	$container.add($.caffeinaToastView);
 
 	if (_.isFunction($container.open)) {
@@ -74,7 +73,7 @@ if (OS_IOS && args.usePhysicsEngine === true && Ti.UI.iOS.createAnimator != null
 
 } else {
 
-	$container.applyProperties({ height: 65, top: -65 });
+	$container.applyProperties({ height: '65dp', top: '-65dp' });
 	$container.add($.caffeinaToastView);
 
 	if (_.isFunction($container.open)) {
@@ -88,6 +87,7 @@ if (OS_IOS && args.usePhysicsEngine === true && Ti.UI.iOS.createAnimator != null
 
 }
 
-
-// Set the timer to automatically close the Window
-timeout = setTimeout(close, args.duration);
+if(args.permanentlyVisible != true) {
+  // Set the timer to automatically close the Window
+  timeout = setTimeout(close, args.duration);
+}

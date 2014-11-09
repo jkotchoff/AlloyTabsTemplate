@@ -1,5 +1,6 @@
 var args = _.extend({
 	duration: 2000,
+	permanentlyVisible: false,
 	animationDuration: 250,
 	message: '',
 	title: Ti.App.name,
