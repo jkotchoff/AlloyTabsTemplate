@@ -2,11 +2,23 @@
   layout: "vertical",
   backgroundColor: "white"
 },
-"Label": {
-  width: Ti.UI.SIZE,
+"ImageView": {
+  left: '7dp',
+  width: '44dp',
+  height: '44dp'
+},
+"ItemTemplate": {
+  height: '44dp'
+},
+".chuckquote": {
+  left: '58dp',
+  right: '7dp',
+  right: 0,
   height: Ti.UI.SIZE,
-  color: "#0000cc",
+  color: '#414042',
   font: {
-    fontSize: '14dp'
+    fontSize: '10dp'
   }
-}
+},
+
+

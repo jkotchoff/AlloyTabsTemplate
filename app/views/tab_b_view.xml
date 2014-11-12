@@ -1,6 +1,16 @@
 <Alloy>
+  <Collection id="listCollection" src="chucknorrisquote" instance="true" />
   <View id="container" module="container">
-    <Label id="warning_label">You are in Tab B
-Tap me to toggle a warning view</Label>
+    <ListView id="chucknorris_list_view" module="listview" onItemclick="itemClick" defaultItemTemplate="chuck_template">
+      <Templates>
+        <ItemTemplate name="chuck_template">
+          <ImageView class="chuck" bindId="icon"/>
+          <Label class="chuckquote" bindId="title"/>
+        </ItemTemplate>
+      </Templates>
+      <ListSection dataTransform="transformData" dataCollection="$.listCollection">
+        <ListItem title:text="{title}" icon:image="{chuck_icon}"/>
+      </ListSection>
+    </ListView>
   </View>
 </Alloy>

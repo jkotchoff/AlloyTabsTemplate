@@ -9,3 +9,18 @@
 // object. For example:
 //
 // Alloy.Globals.someGlobalFunction = function(){};
+
+Alloy.CFG.HTTP_TIMEOUT_SECONDS = 7;
+Alloy.CFG.BACKEND_ROOT_URL     = 'http://sinatra-api-demo.herokuapp.com';
+
+// Lister for internet connection
+var NETWORK_ONLINE = 'event_network_online';
+var NETWORK_OFFLINE = 'event_network_offline';
+Titanium.Network.addEventListener('change', function(e) {
+  if(e.online) {
+    Ti.App.fireEvent(NETWORK_ONLINE);
+  }
+  else {
+    Ti.App.fireEvent(NETWORK_OFFLINE);
+  }
+});
