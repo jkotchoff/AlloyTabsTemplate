@@ -2,42 +2,19 @@ var args = arguments[0] || {};
 
 $.container.showLoading('Loading Tab B');
 
-var next_page = null;
-var refreshFn = function(){
-  $.listCollection.fetch({
-    success: function(collection) {
-      next_page = collection.next_page;
-      $.container.hideLoading();
-      $.container.hideWarning();
-    },
-    error: function(model, message){
-      console.log("chuck norris fetch error: " + message);
-      $.container.hideLoading();
-      $.container.showWarning(message);
-    }
-  });
-};
-
-var performUpdateIfError = function(){
-  if($.container.showingWarning) {
-    $.container.hideWarning();
-    
-    refreshFn();
-  }
-};
-
-Ti.App.addEventListener(NETWORK_ONLINE, performUpdateIfError);
-
 var initialised = false;
 exports.focusView = function focus() {
   if(initialised) {
-    performUpdateIfError();
+    $.container.updateListIfErrorOrStale();
   } else {
     initialised = true;
     
-    refreshFn();
+    $.container.bindList({
+      list:             $.listCollection, 
+      listView:         $.chucknorris_list_view,
+      staleSeconds:     5
+    });
   }
-  console.log("Tab B focused");
 };
 
 function transformData(model) {
@@ -50,7 +27,6 @@ function transformData(model) {
 
   return attrs;
 }
-
 
 function itemClick(e){
   var section = $.chucknorris_list_view.sections[e.sectionIndex];
