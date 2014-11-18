@@ -8,6 +8,7 @@
   "os:ios": {},
   "os:mobileweb": {},
   "dependencies": {
-    "com.caffeinalab.titanium.notifications": "*"
+    "com.caffeinalab.titanium.notifications": "*",
+    "nl.fokkezb.infiniteScroll": "*"
   }
 }
