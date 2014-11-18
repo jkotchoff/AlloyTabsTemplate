@@ -11,6 +11,7 @@ exports.focusView = function focus() {
     
     $.container.bindList({
       pullToRefresh:    true,
+      infiniteScroll:   true,
       refreshLabel:     "Chuck Norris quotes",
       list:             $.listCollection, 
       listView:         $.chucknorris_list_view,

@@ -57,6 +57,7 @@ exports.createView = function(args) {
       pull_to_refresh_ios     = null,
       pull_to_refresh_android = null,
       performUpdateIfErrorFn  = null,
+      list_infinite           = null,
       refreshFn               = null;
     
   view.bindList = function(opts){
@@ -87,7 +88,7 @@ exports.createView = function(args) {
         view.add(pull_to_refresh_android);
       }
     }
-    
+
     function hidePullToRefresh(){
       if(pull_to_refresh_ios != null) {
         pull_to_refresh_ios.reset();
@@ -96,14 +97,39 @@ exports.createView = function(args) {
       }
     }
 
+    if(opts.infiniteScroll) {
+      list_infinite = Alloy.createWidget('nl.fokkezb.infiniteScroll', {
+        onEnd: function(e) {
+          opts.list.fetch({
+            params: '?page=' + next_page,
+            add: true,
+            success: function(collection) {
+              hidePullToRefresh();
+              next_page = collection.next_page;
+              (next_page == null) ? e.done() : e.success();
+            },
+            error: function(model, message){
+              e.error(message);
+            }
+          });
+        }
+      });
+      list_infinite.init(list_view);
+    }
+    
     refreshFn = function(){
       opts.list.fetch({
+        add: false,
         success: function(collection) {
           last_update_time = new Date();
-          next_page = collection.next_page;
           view.hideLoading();
           view.hideWarning();
           hidePullToRefresh();
+          if(list_infinite != null) {
+            next_page = collection.next_page;
+            list_infinite.mark();
+            (next_page == null) ? list_infinite.state(list_infinite.DONE) : list_infinite.state(list_infinite.SUCCESS);
+          }
         },
         error: function(model, message){
           last_update_time = null;

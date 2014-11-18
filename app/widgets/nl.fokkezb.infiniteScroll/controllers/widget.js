@@ -118,7 +118,7 @@ function state(_state, _message) {
 
 function load() {
 
-  if (loading) {
+  if (loading || currentState != exports.SUCCESS) {
     return false;
   }
 
@@ -132,7 +132,7 @@ function load() {
   $.isIndicator.show();
 
   // trigger listener to load
-  $.trigger('end', {
+  var callbacks = {
     success: function(msg) {
       return state(exports.SUCCESS, msg);
     },
@@ -141,8 +141,13 @@ function load() {
     },
     done: function(msg) {
       return state(exports.DONE, msg);
-    },
-  });
+    }
+  };
+  if(args.onEnd) {
+    args.onEnd(callbacks);
+  } else {
+    $.trigger('end', callbacks);
+  }
 
   return true;
 }
