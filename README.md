@@ -52,6 +52,7 @@ The pull to refresh widget is calling a dummy JSON API as per:
 It's hosted on heroku and the instance is automatically spun down when not in use so you may see a timeout error on your first request to get awesome Chuck Norris quotes
 
 ## Wishlist
+* Fix the Android infinite scrolling widget so that the ActivityIndicator is visible at the bottom of the list
 * Make a widget from container.js so that the pull to refresh & infinite scroll etc. can be easily installed with gittio
 * [Badge counter](http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.Tab-property-badge) for Android tabs
 * Usage of the [pull_to_refresh](https://github.com/jkotchoff/AlloyTabsTemplate/blob/master/app/views/components/pull_to_refresh.xml) controller for the Android swipe refresh widget to display last update time
