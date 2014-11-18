@@ -52,12 +52,12 @@ The pull to refresh widget is calling a dummy JSON API as per:
 It's hosted on heroku and the instance is automatically spun down when not in use so you may see a timeout error on your first request to get awesome Chuck Norris quotes
 
 ## Wishlist
+* Make a widget from container.js so that the pull to refresh & infinite scroll etc. can be easily installed with gittio
 * [Badge counter](http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.Tab-property-badge) for Android tabs
 * Usage of the [pull_to_refresh](https://github.com/jkotchoff/AlloyTabsTemplate/blob/master/app/views/components/pull_to_refresh.xml) controller for the Android swipe refresh widget to display last update time
 * [SearchBar](http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.SearchBar) to send queries to the JSON API server
 
 ## Contributing
-
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
