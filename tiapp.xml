@@ -44,7 +44,9 @@
             <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="18"/>
         </manifest>
     </android>
-    <modules/>
+    <modules>
+        <module platform="android">com.rkam.swiperefreshlayout</module>
+    </modules>
     <deployment-targets>
         <target device="android">true</target>
         <target device="blackberry">false</target>

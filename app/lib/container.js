@@ -54,7 +54,8 @@ exports.createView = function(args) {
       next_page               = null,
       last_update_time        = null,
       stale_seconds           = null,
-      pull_to_refresh_control = null,
+      pull_to_refresh_ios     = null,
+      pull_to_refresh_android = null,
       performUpdateIfErrorFn  = null,
       refreshFn               = null;
     
@@ -67,11 +68,32 @@ exports.createView = function(args) {
     stale_seconds = opts.staleSeconds;
     list_view     = opts.listView;
 
-    if(OS_IOS && opts.pullToRefresh == true) {
-      pull_to_refresh_control = Alloy.createController('components/pull_to_refresh', {
-        refresh_label: opts.refreshLabel,
-        list_view:     list_view
-      });
+    if(opts.pullToRefresh == true) {
+      if(OS_IOS) {
+        pull_to_refresh_ios = Alloy.createController('components/pull_to_refresh', {
+          refresh_label: opts.refreshLabel,
+          list_view:     list_view
+        });
+      } else if (OS_ANDROID) {
+        // Remove the Listview from this View container and re-add it under
+        // a SwipeRefresh control
+        view.remove(list_view);
+        var swipe_refresh_module = require('com.rkam.swiperefreshlayout');
+        pull_to_refresh_android = swipe_refresh_module.createSwipeRefresh({
+          view: list_view,
+          height: Ti.UI.FILL,
+          width: Ti.UI.FILL
+        });
+        view.add(pull_to_refresh_android);
+      }
+    }
+    
+    function hidePullToRefresh(){
+      if(pull_to_refresh_ios != null) {
+        pull_to_refresh_ios.reset();
+      } else if(pull_to_refresh_android != null) {
+        pull_to_refresh_android.setRefreshing(false);
+      }
     }
 
     refreshFn = function(){
@@ -81,27 +103,25 @@ exports.createView = function(args) {
           next_page = collection.next_page;
           view.hideLoading();
           view.hideWarning();
-          if(pull_to_refresh_control != null) {
-            pull_to_refresh_control.reset();
-          }
+          hidePullToRefresh();
         },
         error: function(model, message){
           last_update_time = null;
           console.log("chuck norris fetch error: " + message);
           view.hideLoading();
           view.showWarning(message);
-          if(pull_to_refresh_control != null) {
-            pull_to_refresh_control.reset();
-          }
+          hidePullToRefresh();
         }
       });
     };    
 
-    if(pull_to_refresh_control != null) {
-      pull_to_refresh_control.setRefreshFn(refreshFn);
-      list_view.pullView = pull_to_refresh_control.getView();
-      list_view.addEventListener('pull', pull_to_refresh_control.pullListener);
-      list_view.addEventListener('pullend', pull_to_refresh_control.pullendListener);
+    if(pull_to_refresh_ios != null) {
+      pull_to_refresh_ios.setRefreshFn(refreshFn);
+      list_view.pullView = pull_to_refresh_ios.getView();
+      list_view.addEventListener('pull', pull_to_refresh_ios.pullListener);
+      list_view.addEventListener('pullend', pull_to_refresh_ios.pullendListener);
+    } else if (pull_to_refresh_android != null) {
+      pull_to_refresh_android.addEventListener('refreshing', refreshFn);
     }
         
     performUpdateIfErrorFn = function(){
@@ -119,9 +139,9 @@ exports.createView = function(args) {
 
   // Call this guy when the parent window closes
   view.cleanup = function(){
-    if(pull_to_refresh_control != null) {
-      pull_to_refresh_control.cleanup();
-      pull_to_refresh_control = null;
+    if(pull_to_refresh_ios != null) {
+      pull_to_refresh_ios.cleanup();
+      pull_to_refresh_ios = null;
       refreshFn = null;
     }
   };
