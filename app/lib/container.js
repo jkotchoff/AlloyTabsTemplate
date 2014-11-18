@@ -49,14 +49,14 @@ exports.createView = function(args) {
     loading_view.height = 0;
   };
 
-
   // Allow controller to bind a collection to a ListView
-  var list_view              = null,
-      next_page              = null,
-      last_update_time       = null,
-      stale_seconds          = null,
-      performUpdateIfErrorFn = null,
-      refreshFn              = null;
+  var list_view               = null,
+      next_page               = null,
+      last_update_time        = null,
+      stale_seconds           = null,
+      pull_to_refresh_control = null,
+      performUpdateIfErrorFn  = null,
+      refreshFn               = null;
     
   view.bindList = function(opts){
     if(list_view != null) { 
@@ -67,6 +67,13 @@ exports.createView = function(args) {
     stale_seconds = opts.staleSeconds;
     list_view     = opts.listView;
 
+    if(OS_IOS && opts.pullToRefresh == true) {
+      pull_to_refresh_control = Alloy.createController('components/pull_to_refresh', {
+        refresh_label: opts.refreshLabel,
+        list_view:     list_view
+      });
+    }
+
     refreshFn = function(){
       opts.list.fetch({
         success: function(collection) {
@@ -74,15 +81,28 @@ exports.createView = function(args) {
           next_page = collection.next_page;
           view.hideLoading();
           view.hideWarning();
+          if(pull_to_refresh_control != null) {
+            pull_to_refresh_control.reset();
+          }
         },
         error: function(model, message){
           last_update_time = null;
           console.log("chuck norris fetch error: " + message);
           view.hideLoading();
           view.showWarning(message);
+          if(pull_to_refresh_control != null) {
+            pull_to_refresh_control.reset();
+          }
         }
       });
     };    
+
+    if(pull_to_refresh_control != null) {
+      pull_to_refresh_control.setRefreshFn(refreshFn);
+      list_view.pullView = pull_to_refresh_control.getView();
+      list_view.addEventListener('pull', pull_to_refresh_control.pullListener);
+      list_view.addEventListener('pullend', pull_to_refresh_control.pullendListener);
+    }
         
     performUpdateIfErrorFn = function(){
       if(view.showingWarning) {
@@ -95,6 +115,15 @@ exports.createView = function(args) {
     Ti.App.addEventListener(NETWORK_ONLINE, performUpdateIfErrorFn);
     
     refreshFn();
+  };
+
+  // Call this guy when the parent window closes
+  view.cleanup = function(){
+    if(pull_to_refresh_control != null) {
+      pull_to_refresh_control.cleanup();
+      pull_to_refresh_control = null;
+      refreshFn = null;
+    }
   };
 
   view.updateListIfErrorOrStale = function(opts){

@@ -1,0 +1,44 @@
+"#ptr_background": {
+  backgroundColor:'#ccc',
+  width: '100%', 
+  height: '80dp'
+},
+"#ptr_border": {
+  backgroundColor:'white',
+  bottom: 0,
+  height: '2dp'
+},
+"#ptr_arrow": {
+  image:  '/images/whiteArrow.png',
+  left:   '20dp', 
+  bottom: '10dp',
+  width:  '23dp', 
+  height: '60dp'
+},
+"#ptr_status": {
+  color:     'white',
+  font: {
+    fontSize: '13dp', 
+    fontWeight: 'bold'
+  },
+  textAlign: 'center',
+  left:      '55dp', 
+  bottom:    '30dp',
+  width:     '200dp'
+},
+"#ptr_last_updated": {
+  color: 'white',
+  font: {
+    fontSize: '12dp'
+  },
+  textAlign: 'center',
+  left:      '55dp', 
+  bottom:    '15dp',
+  width:     '200dp'
+},
+"#ptr_activity_indicator": {
+  left:   '20dp', 
+  bottom: '13dp',
+  width:  '30dp', 
+  height: '30dp'
+}

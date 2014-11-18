@@ -1,4 +1,3 @@
-
 <Alloy>
   <View id="loading">
     <ImageView class="loadingicon"></ImageView>

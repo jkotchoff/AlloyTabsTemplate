@@ -1,0 +1,9 @@
+<Alloy>
+  <View id="ptr_background">
+    <ImageView id="ptr_arrow"></ImageView>
+    <Label id="ptr_status"></Label>
+    <Label id="ptr_last_updated"></Label>
+    <ActivityIndicator id="ptr_activity_indicator"/>
+    <View id="ptr_border" />
+  </View>
+</Alloy>

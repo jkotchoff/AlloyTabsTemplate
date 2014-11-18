@@ -10,11 +10,20 @@ exports.focusView = function focus() {
     initialised = true;
     
     $.container.bindList({
+      pullToRefresh:    true,
+      refreshLabel:     "Chuck Norris quotes",
       list:             $.listCollection, 
       listView:         $.chucknorris_list_view,
-      staleSeconds:     5
+      staleSeconds:     10 * 60
     });
   }
+};
+
+// This could be called to clean up memory if we closed this window
+exports.cleanup = function(){
+  $.destroy();
+  $.off();
+  $.container.cleanup();
 };
 
 function transformData(model) {
@@ -23,7 +32,7 @@ function transformData(model) {
   // if we had an id associated with the model, we could associate it here:  
   // attrs.itemId = model.id;
   
-  attrs.chuck_icon = "http://www.zeldauniverse.net/forums/image.php?u=5362454";
+  attrs.chuck_icon = "/images/chuck_norris.png";
 
   return attrs;
 }
